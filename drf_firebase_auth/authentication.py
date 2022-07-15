@@ -128,6 +128,8 @@ class FirebaseAuthentication(authentication.TokenAuthentication):
                     email=email
                 )
                 user.last_login = timezone.now()
+                if (firebase_user.display_name is not None):
+                    user.display_name = firebase_user.display_name
                 if (
                     api_settings.FIREBASE_ATTEMPT_CREATE_WITH_DISPLAY_NAME
                     and firebase_user.display_name is not None
