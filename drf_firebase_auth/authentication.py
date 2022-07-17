@@ -91,6 +91,9 @@ class FirebaseAuthentication(authentication.TokenAuthentication):
             if not user.is_active:
                 raise Exception("User account is not currently active.")
             user.last_login = timezone.now()
+            if firebase_user.display_name is not None:
+                # Keep display name updated
+                user.display_name = firebase_user.display_name
             user.save()
         except User.DoesNotExist as e:
             log.error(f"_get_or_create_local_user - User.DoesNotExist: {email}")
