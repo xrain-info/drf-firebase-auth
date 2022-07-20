@@ -25,7 +25,7 @@ DEFAULTS = {
     "FIREBASE_AUTH_HEADER_PREFIX": os.getenv("FIREBASE_AUTH_HEADER_PREFIX", "JWT"),
     # verify that JWT has not been revoked
     "FIREBASE_CHECK_JWT_REVOKED": os.getenv("FIREBASE_CHECK_JWT_REVOKED", True),
-    # require that firebase user.email_verified is True
+    # require that firebase user.email_verified is True if user has signed in via password
     "FIREBASE_AUTH_EMAIL_VERIFICATION": os.getenv(
         "FIREBASE_AUTH_EMAIL_VERIFICATION", False
     ),

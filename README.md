@@ -62,7 +62,7 @@ DRF_FIREBASE_AUTH = {
     # verify that JWT has not been revoked
     'FIREBASE_CHECK_JWT_REVOKED':
         os.getenv('FIREBASE_CHECK_JWT_REVOKED', True),
-    # require that firebase user.email_verified is True
+    # require that firebase user.email_verified is True if user has signed in via password
     'FIREBASE_AUTH_EMAIL_VERIFICATION':
         os.getenv('FIREBASE_AUTH_EMAIL_VERIFICATION', False),
     # function should accept firebase_admin.auth.UserRecord as argument

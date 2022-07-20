@@ -69,7 +69,10 @@ class FirebaseAuthentication(authentication.TokenAuthentication):
             firebase_user = firebase_auth.get_user(uid)
             log.info(f"_authenticate_token - firebase_user: {firebase_user}")
             if api_settings.FIREBASE_AUTH_EMAIL_VERIFICATION:
-                if not firebase_user.email_verified:
+                if (
+                    firebase_user.provider_data[0].provider_id == "password"
+                    and not firebase_user.email_verified
+                ):
                     raise Exception("Email address of this user has not been verified.")
             return firebase_user
         except Exception as e:
