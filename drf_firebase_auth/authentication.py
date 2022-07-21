@@ -44,7 +44,9 @@ class FirebaseAuthentication(authentication.TokenAuthentication):
             self._create_local_firebase_user(local_user, firebase_user)
             return (local_user, decoded_token)
         except Exception as e:
-            raise exceptions.AuthenticationFailed(e)
+            user = AnonymousUser()
+            user.auth_exception = str(e)
+            return (user, None)
 
     def _decode_token(self, token: str) -> Dict:
         """
