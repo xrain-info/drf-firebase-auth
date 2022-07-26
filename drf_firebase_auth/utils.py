@@ -8,9 +8,9 @@ from firebase_admin import auth
 def get_firebase_user_email(firebase_user: auth.UserRecord) -> str:
     try:
         return (
-            firebase_user.email
+            firebase_user.email.lower()
             if firebase_user.email
-            else firebase_user.provider_data[0].email
+            else firebase_user.provider_data[0].email.lower()
         )
     except Exception as e:
         raise Exception(e)
